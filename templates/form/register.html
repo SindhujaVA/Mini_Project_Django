@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <title>Registration Form</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <form id="RegisterForm">
+            {% csrf_token %}
+            <input type="text" name="firstname" placeholder="First name" value="Sindhuja"/><br>
+            <input type="text" name="lastname" placeholder="Last name" value="V A"/><br>
+            <input type="text" name="username" placeholder="username" value="Sindhuja V A"/><br>
+            <input type="password" name="password" placeholder="password" value="asd"/> <br>
+            <input type="email" name="email" placeholder="Email" value="sindhujavasrj@gmail.com"/><br>
+            <input type="text" name="mobileno" placeholder="Mobile Number" value="9944724238"/><br>
+            <input type="submit" value="Register"/><br> <br>
+        </form>
+    </body>
+    <script>
+       $(document).ready(function(){
+       $("#RegisterForm").submit(function(event){
+        event.preventDefault();
+        let formData=new FormData(this);
+        $.ajax({
+            type:"post",
+            url:"http://127.0.01:8000/auth/",
+            data:formData,
+            processData:false,
+            contentType:false,
+             success: function(data){
+                if (data["status"])
+                {
+                    window.location.href="http://127.0.0.1:8000/form/"
+                }
+
+                    console.log(data)
+                },
+                error: function(data){
+                    console.error(data)
+                }
+            })
+})
+})
+</script>
+</html>

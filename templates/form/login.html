@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Login Form</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <form id="LoginForm">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="username"/><br>
+            <input type="password" name="password" placeholder="password"/> <br>
+            <input type="submit" value="Login"/><br> <br>
+            <a href="http://127.0.0.1:8000/register/">New User?? Register here!</a>
+        </form>
+    </body>
+    <script>
+       $(document).ready(function(){
+       $("#LoginForm").submit(function(event){
+        event.preventDefault();
+        let formData=new FormData(this);
+        $.ajax({
+            type:"post",
+            url:"http://127.0.01:8000/auth/",
+            data:formData,
+            processData:false,
+            contentType:false,
+             success: function(data){
+                 if (data["status"])
+                {
+                    window.location.href="http://127.0.0.1:8000/profile/"
+                }
+                    console.log(data)
+                },
+                error: function(data){
+                    console.error(data)
+                }
+            })
+})
+       })
+    </script>
+</html>

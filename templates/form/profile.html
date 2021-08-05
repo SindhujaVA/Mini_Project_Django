@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Profile Form</title>
+    </head>
+    <body>
+        <form id="ProfileForm">
+            {% csrf_token %}
+            {% for users in users1 %}  
+            <ul>
+            <li>{{users.firstname}}</li>
+            <li>{{users.lastname}}</li>
+            <li>{{users.username}}</li>
+            <li>{{users.password}}</li>
+            <li>{{users.emailid}}</li>
+            <li>{{users.mobileno}}</li>
+            </ul> 
+            {% endfor %}       
+        </form>
+    </body>
+</html>
